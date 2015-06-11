@@ -4,10 +4,10 @@
 #include "makemikadonetwork.h"
 #include "EnergyandGradients.h"
 #include "minimizers.h"
-#include <eigen3/Eigen/Core>
-#include <eigen3/Eigen/LU>
-#include <eigen3/Eigen/Sparse>
-#include <nlopt.hpp>
+#include "eigen3/Eigen/Core"
+#include "eigen3/Eigen/LU"
+#include "eigen3/Eigen/Sparse"
+//#include <nlopt.hpp>
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
@@ -140,6 +140,7 @@ for(int SEED=0; SEED<100; SEED++){
 
     my_random::set_seed(SEED);
     cout<<SEED<<endl;
+       
     makeSticks(mikado,mikorig,NumberMikado,LStick);
  
      //mikorig=mikado;
@@ -148,7 +149,6 @@ for(int SEED=0; SEED<100; SEED++){
          mikadofile<<mikado[i].nr<<"\t"<<mikado[i].x<<"\t"<<mikado[i].y<<"\t"<<mikado[i].th<<"\t"<<mikado[i].wlr<<"\t"<<
          mikado[i].wud<<endl;
      } mikadofile.close();
- 
  
      makeConnections(Connection,mikado,LStick); //Here we create the nodes, and the springs from the conncection structure that has already
                                              //been made above. 
@@ -205,7 +205,23 @@ for(int SEED=0; SEED<100; SEED++){
             singleNodes.push_back(unique);  
         }
      }
+
+    Connection.clear();
+    mikado.clear();
+    mikorig.clear();
+    numberdistribution.clear();
+    C.clear();
+    conmatr.clear();
+    springlist.clear();
+    ConnectSticks.clear();
+    ELONSTICK.clear();
+    order.clear();
+    springpairs.clear();
+    nodes.clear();
+        
 }
+
+
 return 0;
 }
 
